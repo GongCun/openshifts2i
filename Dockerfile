@@ -1,4 +1,4 @@
-FROM httpd
+FROM docker.io/httpd
 LABEL io.k8s.description="Simple HTTP Webserver" \
       io.k8s.display-name="Simple HTTP Webserver" \
       io.openshift.expose-services="8080:http" \
@@ -6,8 +6,8 @@ LABEL io.k8s.description="Simple HTTP Webserver" \
       io.openshift.s2i.scripts-url="image:///usr/libexec/s2i"
       
 ADD bin /usr/libexec/s2i/
-RUN chown -R 1001 /usr/local/apache2/htdocs/ && \
-    chown -R 1001 /usr/local/apache2/logs/ && \
+RUN chmod -R 777 /usr/local/apache2/htdocs/ && \
+    chmod -R 777 /usr/local/apache2/logs/ && \
     sed -i 's/Listen 80/Listen 8080/g' /usr/local/apache2/conf/httpd.conf
 
 USER 1001
