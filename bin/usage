@@ -1,0 +1,6 @@
+#!/bin/bash
+set -eo pipefail
+
+cat <<EOF
+This is a S2I builder image for running a simple HTTP server.
+EOF

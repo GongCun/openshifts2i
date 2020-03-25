@@ -1,0 +1,12 @@
+#!/bin/bash
+set -eo pipefail
+
+if [[ "$1" == "-h" ]]; then
+        exec /usr/libexec/s2i/usage
+fi
+
+echo "---> Move HTTP server files into place."
+if [ "$(ls -A /tmp/src)" ]; then
+        mv /tmp/src/* /usr/local/apache2/htdocs/
+fi
+
