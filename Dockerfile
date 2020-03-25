@@ -9,9 +9,8 @@ COPY assemble /usr/libexec/s2i/
 COPY run /usr/libexec/s2i/
 COPY usage /usr/libexec/s2i/
 
-RUN chown -R 1001:1001 /usr/local/apache2/htdocs/ && \
-    touch /usr/local/apache2/logs/httpd.pid && \
-    chown -R 1001:1001 /usr/local/apache2/logs/ && \
+RUN chmod -R 777 /usr/local/apache2/htdocs/ && \
+    chmod -R 777 /usr/local/apache2/logs/ && \
     sed -i 's/Listen 80/Listen 8080/g' /usr/local/apache2/conf/httpd.conf
 
 USER 1001
